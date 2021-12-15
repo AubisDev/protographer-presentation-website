@@ -106,7 +106,7 @@ export const Navbar = ({  setMenuActual, setPictures, openResposiveMenu, setOpen
                         <div className='flex flex-col border-2 border-white/40 p-4 -mt-20 rounded-lg w-90pw animate__animated animate__fadeInDown'>
                             <div className='flex flex-row'>
                                 <button 
-                                    className='w-1/2 group border-r border-b pb-1'
+                                    className='w-1/2 group border-r border-b pb-1 px-3'
                                     onClick={ () => colocarFotos('sesiones')}
                                 >
                                     <i className="fas fa-camera-retro text-3xl text-blue-800"></i>
@@ -126,7 +126,7 @@ export const Navbar = ({  setMenuActual, setPictures, openResposiveMenu, setOpen
                                     onClick={ () => colocarFotos('paisajes') }
                                 >
                                     <i className="far fa-image text-3xl text-green-400"></i>
-                                    <p className='text-xs text-gray-300 transition ease-in-out  group-hover:scale-110 duration-300'>Paisaje</p>
+                                    <p className='text-xs text-gray-300 transition ease-in-out  group-hover:scale-110 duration-300'>Paisajes</p>
                                 </button>
                                 <button
                                     className='w-1/2 group pt-1'

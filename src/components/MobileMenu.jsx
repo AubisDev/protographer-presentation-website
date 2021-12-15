@@ -22,7 +22,7 @@ const MobileMenu = ({ setMenuActual, setPictures, setOpenResposiveMenu }) => {
     }
 
     return (
-        <div className='absolute h-full md:w-1/4 sm:w-1/2 w-full  bg-black/90'> 
+        <div className='absolute h-full md:w-1/4 sm:w-1/2 w-full  bg-black/90 animate__animated animate__fadeInLeft animate__slower'> 
             <div className='w-full h-full flex justify-center items-center text-center'>
                 <button 
                     className='text-white absolute top-0 right-0'
