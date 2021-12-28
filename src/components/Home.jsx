@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useReducer, useEffect, useState } from 'react'
 import { getRandomImages } from './getImages';
 import { Navbar } from './Navbar'
 import { Pictures } from './Pictures';
@@ -6,10 +6,8 @@ import Modal from './Modal'
 import Slideshow from './Slideshow';
 import MobileMenu from './MobileMenu';
 
-const initialState = getRandomImages();
-
 export const Home = () => {
-    const [pictures, setPictures] = useState(initialState);
+    const [pictures, setPictures] = useState([]);
     const [openResposiveMenu, setOpenResposiveMenu] = useState(false)
     const [menuActual, setMenuActual] = useState('');
     
@@ -17,6 +15,7 @@ export const Home = () => {
     const [activePicture, setActivePicture] = useState(null);
     const [openModal, setOpenModal] = useState(false) 
     const [page, setPage] = useState(0);
+
     
 
 

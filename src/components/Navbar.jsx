@@ -8,7 +8,7 @@ export const Navbar = ({  setMenuActual, setPictures, openResposiveMenu, setOpen
     const [activateMenu, setActivateMenu] = useState(false)
     const mobile = useMediaQuery({ query: '(max-width: 1024px)' })
     const smallScreen = useMediaQuery({ query: '(max-width: 768px)' });
-
+    const [toggleContact, setToggleContact] = useState(false)
 
     useEffect(() => {
         if ( !mobile && openResposiveMenu ){
@@ -22,10 +22,7 @@ export const Navbar = ({  setMenuActual, setPictures, openResposiveMenu, setOpen
     }, [mobile])
 
     const menuActive = () => {
-        
         (!mobile && !openResposiveMenu) ?  setActivateMenu( !activateMenu ) : setOpenResposiveMenu( !openResposiveMenu )  ;
-
-    
     }
 
     const colocarFotos = ( seleccion ) => {
@@ -43,9 +40,13 @@ export const Navbar = ({  setMenuActual, setPictures, openResposiveMenu, setOpen
             setPictures( getWeddingImages() );
         }
     }
+    
+    const handleToggleContact = () => {
+        setToggleContact( !toggleContact);
+    }
 
     let menuClass = activateMenu ? `rotate-180 transition duration-500 lg:my-6 ` : 'animate__animated animate__fadeIn animate__slower'; 
-    // let subMenuClass = activateMenu ? `flex flex-col border-2 border-white/40 p-4 -mt-20 rounded-lg w-3/4 animate__animated animate__fadeInDown` : `flex flex-col border-2 border-white/40 p-4 -mt-20 rounded-lg w-3/4  animate__animated animate__fadeInUp`
+
     return (
         <div className='w-4/5 h-full font-tmodel2 flex lg:flex-col m-auto'>
             <div className='w-full h-full flex flex-row lg:flex-col justify-between sm:justify-evenly items-center  '>
@@ -141,8 +142,11 @@ export const Navbar = ({  setMenuActual, setPictures, openResposiveMenu, setOpen
                 }
                 {
                     !smallScreen && 
-                    <button className='block text-xl text-white hover:text-green-600 animate__animated animate__fadeInUp animate__slower'>
-                        Contacto
+                    <button 
+                        className='block text-xl text-white hover:text-green-600 animate__animated animate__fadeInUp animate__slower'
+                        onClick={ handleToggleContact}    
+                    >
+                        { !toggleContact ? 'Contacto' : 'Proximamente'}
                     </button> 
                 }
             </div>
