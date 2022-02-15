@@ -1,57 +1,48 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState, useReducer } from 'react'
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import '@splidejs/splide/dist/css/splide.min.css';
 import 'animate.css';
+import { getHomeImages } from '../utils/getHomeImages';
+import './slideshow.css'
 
 const Slideshow = () => {
-    const ref = useRef();
+    const [homeImages, setHomeImages] = useState([]);
+    const [currentImgIndex, setCurrentImgIndex] = useState(0);
 
-    useEffect( () => {
-        if ( ref.current ) {
-          console.log( ref.current.splide.length );
-        }
-      } );
+
+    useEffect(() => {
+      setHomeImages( getHomeImages() )
+    }, [])
+    
+    useEffect(() => {
+        const interval = setInterval( () => {
+            if( currentImgIndex === 3 ){
+                setCurrentImgIndex(0);
+            }else{
+                setCurrentImgIndex( currentImgIndex + 1)
+            }
+        }, 3000)
+        
+        
+        return () => clearInterval(interval)
+    }, [currentImgIndex])
+    
+
+
     return (
-        <div className='blockh-full '>
-         
-            <Splide
-                options={ {
-                    rewind: true,
-                    width : 1550,
-                    height: 757,
-                    arrows: false,
-                    autoplay: true,
-                    interval: 2500,
-                    pauseOnFocus: false,
-                    type: 'fade',
-                    pauseOnHover: false,
-                    speed: 2000,
-                    ref: {ref}
-                    
-                } }
-            >
-                <SplideSlide>
-                    <div className='bg-random4 bg-cover bg-center bg-no-repeat h-full w-full animate__animated animate__fadeIn animate__slower object-cover '></div>
-                </SplideSlide>
-                <SplideSlide>
-                    <div className='bg-random2 bg-center bg-cover bg-no-repeat h-full w-full '></div>
-                </SplideSlide>
-                <SplideSlide>
-                    <div className='bg-random3 bg-center bg-cover bg-no-repeat h-full w-full '></div>
-                </SplideSlide>
-                <SplideSlide>
-                    <div className='bg-random1 bg-center bg-cover bg-no-repeat h-full w-full '></div>
-                </SplideSlide>
-                <SplideSlide>
-                    <div className='bg-random5 bg-cover bg-center bg-no-repeat h-full w-full '></div>
-                </SplideSlide>
-                <SplideSlide>
-                    <div className='bg-random6 bg-cover bg-center bg-no-repeat h-full w-full '></div>
-                </SplideSlide>
-                <SplideSlide>
-                    <div className='bg-random7 bg-cover bg-center bg-no-repeat h-full w-full '></div>
-                </SplideSlide>
-            </Splide>
+        <div className='h-full w-full animate__animated animate__fadeInLeft animate_slower'>
+                    {
+                        currentImgIndex === 0 ? <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover h-full w-full animate__animated animate__fadeInRight animate_slower' style={{ objectPosition: '20% 50%'}} /> 
+                        : currentImgIndex === 1 ?  <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover object-center h-full w-full animate__animated animate__fadeInLeft animate_slower' /> 
+                        : currentImgIndex === 2 ? <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover h-full item animate__animated animate__fadeIn animate_slower' style={{ objectPosition: '65% 50%'}} />
+                        : <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover h-full w-full animate__animated animate__fadeIn animate_slower' style={{ objectPosition: '33% 25%'}} />
+                    }
+                    {/* <img src={homeImages[0]} alt='descripcion' className='object-cover  h-full w-auto' style={{ objectPosition: '20% 50%'}} /> */}
+                    {/* <img src={homeImages[1]} alt='descripcion' className='object-cover object-center h-full w-auto' /> */}
+               
+                    {/* <img src={homeImages[2]} alt='descripcion' className='object-cover h-full w-auto' style={{ objectPosition: '65% 50%'}} /> */}
+
+                    {/* <img src={homeImages[3]} alt='descripcion' className='object-cover h-full w-auto ' style={{ objectPosition: '33% 25%'}} /> */}
         </div>
       );
 }
