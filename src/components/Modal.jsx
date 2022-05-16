@@ -9,8 +9,12 @@ const Modal = ({ srcImg, setOpenModal, setActivePicture }) => {
     }
 
     return (
-        <div onClick={(e) => e.target.id !== 'modalImagen' && closeModal()} id='modal' className='absolute bg-black/60 h-screen w-screen z-100 animate__animated animate__fadeIn'>
-            <div className=' w-3/4 h-3/4 m-auto  -mt-10 relative top-1/2 transform -translate-y-1/2'>
+        <div 
+            onClick={(e) => e.target.id !== 'modalImagen' && closeModal()} 
+            id='modal' 
+            className='fixed bg-black/80  h-screen w-screen z-100 animate__animated animate__fadeIn'
+        >
+            <div className=' w-3/4 h-3/4 m-auto  -mt-10 relative top-1/2 transform -translate-y-1/2 '>
                 <button 
                     className='w-full'
                     onClick={ closeModal }

@@ -1,6 +1,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx}",
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     fontFamily: {
@@ -10,7 +11,7 @@ module.exports = {
     extend: {
       height: {
         '90ph': '90%',
-        '10ph': '10%',
+        '10ph': '10vh',
         '20ph': '20%',
         '15ph': '15%',
         'hwd' : '1.875rem'
@@ -38,5 +39,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }

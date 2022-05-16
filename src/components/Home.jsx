@@ -1,38 +1,39 @@
-import React, {useState } from 'react'
+import React, {useState, useEffect } from 'react'
 import { Navbar } from './Navbar'
 import { Pictures } from './Pictures';
 import Modal from './Modal'
 import Slideshow from './Slideshow';
 import MobileMenu from './MobileMenu';
+import { getAllImages } from './getImages';
 
 export const Home = () => {
     const [pictures, setPictures] = useState([]);
     const [openResposiveMenu, setOpenResposiveMenu] = useState(false)
-    const [menuActual, setMenuActual] = useState('');
-    const [actualPage, setActualPage] = useState(0);
+    const [menuActual, setMenuActual] = useState(false);
 
     const [activePicture, setActivePicture] = useState(null);
     const [openModal, setOpenModal] = useState(false) 
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(0);    
 
-    
-
+    useEffect(()=>{
+        setPictures( getAllImages() )
+    },[] )
 
     return (
-        <div className='h-screen w-screen flex flex-col lg:flex-row z-50 '>
-            <div className='md:w-full h-10ph lg:w-1/5 lg:h-full bg-gray-800'>
-                <Navbar  setActualPage={ setActualPage } setMenuActual={ setMenuActual } setPictures={setPictures} openResposiveMenu={  openResposiveMenu } setOpenResposiveMenu={setOpenResposiveMenu}/>
+        <div className='h-auto w-screen flex flex-col xl:flex-row z-50 bg-gray-800 	'>
+            <div className='w-full xl:w-1/5 h-10ph xl:h-screen flex flex-col items-center bg-gray-800 '>
+                <Navbar  setMenuActual={ setMenuActual } setPictures={setPictures} openResposiveMenu={  openResposiveMenu } setOpenResposiveMenu={setOpenResposiveMenu} />
             </div>
-            <div className='w-full h-90ph lg:w-4/5 lg:h-full shadow-lg  animate__animated animate__fadeInRight animate__slow   overflow-hidden  '>
+            <div className='w-full h-90ph xl:w-4/5 xl:h-full shadow-lg  animate__animated animate__fadeInRight animate__slow overflow-hidden  '>
                {
-                   menuActual === '' ? <Slideshow setMenuActual={setMenuActual}/> :  <Pictures pictures={pictures} actualPage={pictures[page]} setOpenModal={setOpenModal} setActivePicture={setActivePicture} openModal={openModal} actualPage={actualPage} setActualPage={setActualPage}/>
+                   !menuActual ? <Slideshow setMenuActual={setMenuActual}/> :  
+                   <Pictures pictures={pictures}  setOpenModal={setOpenModal} setActivePicture={setActivePicture} openModal={openModal} setMenuActual={setMenuActual}/>
                }
             </div>
             
-            { openModal &&  <Modal setActivePicture={setActivePicture} srcImg={activePicture} setOpenModal={ setOpenModal }/>
-            }
+            { openModal &&  <Modal setActivePicture={setActivePicture} srcImg={activePicture} setOpenModal={ setOpenModal }/> }
             {
-                openResposiveMenu && <MobileMenu setMenuActual={ setMenuActual } setPictures={setPictures} setOpenResposiveMenu={ setOpenResposiveMenu } setActualPage={setActualPage}/>
+                openResposiveMenu && <MobileMenu setMenuActual={ setMenuActual } setPictures={setPictures} setOpenResposiveMenu={ setOpenResposiveMenu } />
             }
         </div>
     )

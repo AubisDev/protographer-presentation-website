@@ -1,28 +1,11 @@
 import React from 'react'
-import { getEventImages, getPaisajeImages, getPersonImages, getWeddingImages } from './getImages'
+//import { getEventImages, getPaisajeImages, getPersonImages, getWeddingImages } from './getImages'
 
-const MobileMenu = ({ setMenuActual, setPictures, setOpenResposiveMenu, setActualPage }) => {
+const MobileMenu = ({  setOpenResposiveMenu, setMenuActual}) => {
 
-    const colocarFotos = ( seleccion ) => {
-        setMenuActual(seleccion);
-        setOpenResposiveMenu(false)
-        if(seleccion === 'sesiones'){
-            setActualPage(0)
-            setPictures( getPersonImages() );
-        }
-        else if(seleccion === 'eventos'){
-            setActualPage(0)
-            setPictures( getEventImages() );
-        }
-        else if(seleccion === 'paisajes'){
-            setActualPage(0)
-            setPictures( getPaisajeImages() );
-        }
-        else if(seleccion === 'bodas'){
-            setActualPage(0)
-            setPictures( getWeddingImages() );
-        }
-        
+    const albumSection = () => {
+        setMenuActual(true);
+        setOpenResposiveMenu( false )
     }
 
     return (
@@ -35,10 +18,16 @@ const MobileMenu = ({ setMenuActual, setPictures, setOpenResposiveMenu, setActua
                         <i className="fas fa-times text-3xl p-3 mr-2"></i>
                 </button>
                 <ul className='text-white text-2xl'>
-                    <li><button className='p-2 hover:bg-green-600/60  rounded-md w-full z-[100]' onClick={() => colocarFotos('eventos')}>Eventos</button></li>
-                    <li><button className='p-2 hover:bg-green-600/60 rounded-md w-full z-[100]' onClick={() => colocarFotos('bodas')}>Bodas</button></li>
-                    <li><button className='p-2 hover:bg-green-600/60 rounded-md w-full z-[100]' onClick={() => colocarFotos('sesiones')}>Sesiones fotograficas</button></li>
-                    <li><button className='p-2 hover:bg-green-600/60 rounded-md w-full z-[100]' onClick={() => colocarFotos('paisajes')}>Paisajes</button></li>
+                    {
+                        ['Album Completo','Eventos','Sesiones Fotograficas','Retratos','Paisajes'].map( section => (
+                            <li>
+                                <button 
+                                    className='p-2 hover:bg-green-600/60  rounded-md w-full z-[100]' 
+                                    onClick={albumSection}>{section}
+                                </button>
+                            </li>
+                        ) )
+                    }
                 </ul>
             </div>
         </div>

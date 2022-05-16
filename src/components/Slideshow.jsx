@@ -1,8 +1,6 @@
-import React, { useRef, useEffect, useState, useReducer } from 'react'
-import { Splide, SplideSlide } from '@splidejs/react-splide';
-import '@splidejs/splide/dist/css/splide.min.css';
+import React, {  useEffect, useState, useLayoutEffect } from 'react'
 import 'animate.css';
-import { getHomeImages } from '../utils/getHomeImages';
+import { getHomeImages } from './getImages';
 import './slideshow.css'
 
 const Slideshow = () => {
@@ -14,35 +12,27 @@ const Slideshow = () => {
       setHomeImages( getHomeImages() )
     }, [])
     
-    useEffect(() => {
+    useLayoutEffect(() => {
         const interval = setInterval( () => {
             if( currentImgIndex === 3 ){
                 setCurrentImgIndex(0);
             }else{
                 setCurrentImgIndex( currentImgIndex + 1)
             }
-        }, 3000)
+        }, 4000)
         
         
-        return () => clearInterval(interval)
+        return () => clearInterval(interval) 
     }, [currentImgIndex])
     
 
 
     return (
-        <div className='h-full w-full animate__animated animate__fadeInLeft animate_slower'>
-                    {
-                        currentImgIndex === 0 ? <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover h-full w-full animate__animated animate__fadeInRight animate_slower' style={{ objectPosition: '20% 50%'}} /> 
-                        : currentImgIndex === 1 ?  <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover object-center h-full w-full animate__animated animate__fadeInLeft animate_slower' /> 
-                        : currentImgIndex === 2 ? <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover h-full item animate__animated animate__fadeIn animate_slower' style={{ objectPosition: '65% 50%'}} />
-                        : <img src={homeImages[currentImgIndex]} alt='descripcion' className='object-cover h-full w-full animate__animated animate__fadeIn animate_slower' style={{ objectPosition: '33% 25%'}} />
-                    }
-                    {/* <img src={homeImages[0]} alt='descripcion' className='object-cover  h-full w-auto' style={{ objectPosition: '20% 50%'}} /> */}
-                    {/* <img src={homeImages[1]} alt='descripcion' className='object-cover object-center h-full w-auto' /> */}
-               
-                    {/* <img src={homeImages[2]} alt='descripcion' className='object-cover h-full w-auto' style={{ objectPosition: '65% 50%'}} /> */}
-
-                    {/* <img src={homeImages[3]} alt='descripcion' className='object-cover h-full w-auto ' style={{ objectPosition: '33% 25%'}} /> */}
+        <div className='h-[90vh] xl:h-screen w-full animate__animated animate__fadeIn animate_slower '>
+            <img src={homeImages[0]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 0 ? 'block' : 'hidden'} `} />
+            <img src={homeImages[1]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 1 ? 'block' : 'hidden'}`} />
+            <img src={homeImages[2]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 2 ? 'block' : 'hidden'}`} />
+            <img src={homeImages[3]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 3 ? 'block' : 'hidden'}`} />
         </div>
       );
 }
