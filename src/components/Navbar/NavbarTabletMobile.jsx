@@ -2,7 +2,7 @@ import React from 'react'
 import { v4 as uuidv4 } from 'uuid';
 const NavbarTabletMobile = ({activateMenu, menuActive, setMenuActual}) => {
   return (
-        <div className='w-full flex flex-row justify-evenly items-center '>
+        <div className='w-full h-full flex flex-row justify-evenly items-center   '>
             <button 
                 onClick={ () =>  menuActive() }
             >
@@ -37,7 +37,13 @@ const NavbarTabletMobile = ({activateMenu, menuActive, setMenuActual}) => {
                     </div>
                 )
             }
-
+            <section
+                className='hidden lg:flex  flex-col text-center text-lg text-white  animate__animated animate__fadeInUp animate__slower'
+            >
+                Contacto
+                <span className='text-sm leading-4'>Tlf: +56 9 6579 3127</span>
+                <span className='text-base'>Correo: alegriamanuelh@gmail.com </span>
+            </section> 
             <button 
                 className='tracking-wide font-semibold h-full  xl:h-auto animate__animated animate__fadeInDown animate__slower flex flex-row items-center ml-2 sm:ml-0'
                 onClick={() => setMenuActual(false)}

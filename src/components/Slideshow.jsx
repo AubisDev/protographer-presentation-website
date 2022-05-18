@@ -14,7 +14,7 @@ const Slideshow = () => {
     
     useLayoutEffect(() => {
         const interval = setInterval( () => {
-            if( currentImgIndex === 3 ){
+            if( currentImgIndex === 4 ){
                 setCurrentImgIndex(0);
             }else{
                 setCurrentImgIndex( currentImgIndex + 1)
@@ -29,10 +29,11 @@ const Slideshow = () => {
 
     return (
         <div className='h-[90vh] xl:h-screen w-full animate__animated animate__fadeIn animate_slower '>
-            <img src={homeImages[0]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 0 ? 'block' : 'hidden'} `} />
-            <img src={homeImages[1]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 1 ? 'block' : 'hidden'}`} />
-            <img src={homeImages[2]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 2 ? 'block' : 'hidden'}`} />
-            <img src={homeImages[3]} alt="..." className={`h-screen w-full object-cover animate__animated animate__fadeIn ${ currentImgIndex === 3 ? 'block' : 'hidden'}`} />
+            <img src={homeImages[0]} alt="..." className={`h-full w-full object-cover object-top animate__animated animate__fadeIn ${ currentImgIndex === 0 ? 'block' : 'hidden'} `} />
+            <img src={homeImages[1]} alt="..." className={`h-full w-full object-cover object-left animate__animated animate__fadeIn ${ currentImgIndex === 1 ? 'block' : 'hidden'}`} />
+            <img src={homeImages[2]} alt="..." className={`h-full w-full object-cover object-right animate__animated animate__fadeIn ${ currentImgIndex === 2 ? 'block' : 'hidden'}`} />
+            <img src={homeImages[3]} alt="..." className={`h-full w-full object-cover object-left animate__animated animate__fadeIn ${ currentImgIndex === 3 ? 'block' : 'hidden'}`} />
+            <img src={homeImages[4]} alt="..." className={`h-full w-full object-cover object-top animate__animated animate__fadeIn ${ currentImgIndex === 4 ? 'block' : 'hidden'}`} />
         </div>
       );
 }

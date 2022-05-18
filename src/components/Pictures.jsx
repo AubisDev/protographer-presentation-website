@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Plock } from "react-plock";
 import './pictures.css'
 import { motion } from "framer-motion";
+
+
 export const Pictures = ({pictures, setOpenModal, setActivePicture }) => {    
 
     const breakpoints = [
-        { size: 0, columns: 2},
-        { size: 768, columns: 3 }, 
+        { size: 0, columns: 1},
+        { size: 450, columns: 2},
+        { size: 768, columns:3 }, 
     ];
 
     const activeModal = ( pic ) => { 
@@ -18,7 +21,7 @@ export const Pictures = ({pictures, setOpenModal, setActivePicture }) => {
     
     return (
         <>
-        <Plock gap={0} nColumns={breakpoints} >
+        <Plock gap={0} nColumns={breakpoints}   >
             {pictures.map( picture => (
                 <motion.img 
                     initial={{ opacity: 0 }}
@@ -29,7 +32,8 @@ export const Pictures = ({pictures, setOpenModal, setActivePicture }) => {
                     key={picture}
                     src={picture} 
                     alt='imagen' 
-                    className='hover:scale-105 duration-300 hover:z-50'/>
+                    className=' hover:scale-105 duration-300 hover:z-50'
+                />
             ))}
         </Plock>
         </> 

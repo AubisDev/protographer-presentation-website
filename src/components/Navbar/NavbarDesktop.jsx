@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { getAllImages } from '../getImages' 
+import { FiltrarImagenes, getAllImages } from '../getImages' 
 
 const NavbarDesktop = ({setPictures, setMenuActual}) => {
 
-
+  const handleImgSet = (filtro) => {
+    setMenuActual(true);
+    setPictures( FiltrarImagenes(filtro) );
+  }
   return (
     <div className='w-4/5 h-full  m-auto flex flex-col justify-evenly items-center' >
         <button 
@@ -22,7 +25,7 @@ const NavbarDesktop = ({setPictures, setMenuActual}) => {
                 ['Sesiones', 'Paisajes', 'Eventos', 'Retratos','Album Completo'].map( (section, idx) => (
                     <button 
                         key={uuidv4()}
-                        onClick={ () => setMenuActual(true) }
+                        onClick={ () => handleImgSet(section) }
                         className={`w-full h-20 flex justify-center items-center flex-col text-sm text-white border border-gray-600 duration-300 group 
                         ${idx === 0 ? 'rounded-tl-lg hover:bg-pink-500' 
                         : idx ==1 ? 'rounded-tr-lg hover:bg-blue-500' 
@@ -42,12 +45,13 @@ const NavbarDesktop = ({setPictures, setMenuActual}) => {
                 ))
             }
         </div>
-        <button 
-            className='block text-xl text-white hover:text-green-600 animate__animated animate__fadeInUp animate__slower'
-            //onClick={ handleToggleContact}    
+        <section
+            className='flex flex-col text-center text-xl text-white  animate__animated animate__fadeInUp animate__slower'
         >
             Contacto
-        </button> 
+            <span className='text-base'>Tlf: +56 9 6579 3127</span>
+            <span className='text-base'>Correo: alegriamanuelh@gmail.com </span>
+        </section> 
     </div>
   )
 }

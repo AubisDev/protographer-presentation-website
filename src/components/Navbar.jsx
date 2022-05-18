@@ -31,14 +31,23 @@ export const Navbar = ({  setMenuActual, setPictures, openResposiveMenu, setOpen
 
     return (
         <div className='xl:w-1/5 w-full h-full font-tmodel2 flex items-center justify-between xl:fixed -ml-2'>
-            <div className='w-full h-full flex flex-row lg:flex-col justify-between sm:justify-evenly items-center  '>
+            <div className='w-full h-full flex flex-row lg:flex-col justify-between sm:justify-evenly items-center '>
 
                 <div className={`h-full w-full hidden xl:flex flex-row `}>
-                    <NavbarDesktop menuActive={menuActive} activateMenu={activateMenu} setPictures={setPictures}  setMenuActual={setMenuActual}/>
+                    <NavbarDesktop 
+                        menuActive={menuActive} 
+                        activateMenu={activateMenu} 
+                        setPictures={setPictures}  
+                        setMenuActual={setMenuActual}
+                    />
                 </div>
 
-                <div className={`h-full w-full flex xl:hidden flex-row `}>
-                    <NavbarTabletMobile menuActive={menuActive} activateMenu={activateMenu} setMenuActual={setMenuActual} 
+                <div className={`h-full w-full flex xl:hidden flex-row   `}>
+                    <NavbarTabletMobile 
+                        menuActive={menuActive} 
+                        activateMenu={activateMenu} 
+                        setMenuActual={setMenuActual}
+                        setPictures={setPictures}  
                     />
                 </div>
                     

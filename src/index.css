@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(31 41 55)
 }
 
 code {
@@ -18,3 +19,9 @@ code {
 }
 /* font-family: 'Chakra Petch', sans-serif;
 font-family: 'Source Sans Pro', sans-serif; */
+
+.sticky-navbar{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
